@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
+		
         * {
             margin: 0;
             padding: 0;
@@ -118,7 +119,25 @@
         /* Quand la classe 'lang-en' est sur le body, on inverse */
         body.lang-en [lang="en"] { display: inline-block; }
         body.lang-en [lang="fr"] { display: none; }
+		/* Cache l'anglais par défaut */
+[lang="en"] { 
+    display: none !important; 
+}
 
+/* Quand le body a la classe lang-en, on cache le français et on montre l'anglais */
+body.lang-en [lang="fr"] { 
+    display: none !important; 
+}
+
+body.lang-en [lang="en"] { 
+    display: inline-block !important; 
+}
+
+/* Cas particulier pour les div/p qui doivent être en block */
+body.lang-en div[lang="en"], 
+body.lang-en p[lang="en"] { 
+    display: block !important; 
+}
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -589,33 +608,40 @@
             .btn {
                 width: 100%;
             }
-	   /* --- Language Switcher Logic --- */
-        [lang="en"] { display: none; }
-        
-        body.lang-en [lang="en"] { display: block; }
-        body.lang-en span[lang="en"], 
-        body.lang-en a[lang="en"], 
-        body.lang-en strong[lang="en"] { display: inline; }
-        
-        body.lang-en [lang="fr"] { display: none; }
+            
+            .lang-btn {
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+        }
 
+        /* --- Language Switcher Style --- */
         .lang-btn {
-            background: rgba(6, 182, 212, 0.1);
-            border: 1px solid rgba(6, 182, 212, 0.5);
+            background: transparent;
+            border: 1px solid #06b6d4;
             color: #06b6d4;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            margin-left: 1rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-left: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.1);
+            display: inline-block;
+            font-family: inherit;
         }
 
         .lang-btn:hover {
-            background: #06b6d4;
-            color: white;
+            background: rgba(6, 182, 212, 0.1);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            transform: translateY(-2px);
         }
+
+        .lang-btn:active {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -629,7 +655,7 @@
                 <a href="#experience"><span lang="fr">Expériences</span><span lang="en">Experience</span></a>
                 <a href="#projects"><span lang="fr">Projets</span><span lang="en">Projects</span></a>
                 <a href="#contact" class="cta"><span lang="fr">Contact</span><span lang="en">Contact</span></a>
-                <button id="lang-toggle" class="lang-btn">EN</button>
+                <button id="lang-toggle" class="lang-btn"><span lang="fr">EN</span><span lang="en">FR</span></button>
             </div>
         </div>
     </nav>
@@ -729,12 +755,26 @@
                 <h3 style="margin-top: 2rem;" lang="fr">Formation</h3>
                 <h3 style="margin-top: 2rem;" lang="en">Education</h3>
                 
-                <p lang="fr"><strong>Master Informatique - 2ème année</strong> (2024-2025)<br>Estiam, Campus Genève<br>Spécialisation : Cybersécurité, Cloud, Système & Réseaux</p>
-                <p lang="en"><strong>Master's in Computer Science - 2nd Year</strong> (2024-2025)<br>Estiam, Geneva Campus<br>Specialization: Cybersecurity, Cloud, Systems & Networks</p>
-                
-                <p lang="fr"><strong>Baccalauréat Général</strong> (2021-2024)<br>Lycée International Ferney-Voltaire<br>Mention bien</p>
-                <p lang="en"><strong>High School Diploma (General Baccalaureate)</strong> (2021-2024)<br>International High School Ferney-Voltaire<br>Honors</p>
-            </div>
+                <div lang="fr">
+        <p><strong>Master Informatique - 2ème année</strong> (2024-2025)<br>
+        Estiam, Campus Genève<br>
+        Spécialisation : Cybersécurité, Cloud, Système & Réseaux</p>
+        
+        <p><strong>Baccalauréat Général</strong> (2021-2024)<br>
+        Lycée International Ferney-Voltaire<br>
+        Mention bien</p>
+    </div>
+
+    <div lang="en">
+        <p><strong>Master's in Computer Science - 2nd Year</strong> (2024-2025)<br>
+        Estiam, Geneva Campus<br>
+        Specialization: Cybersecurity, Cloud, Systems & Networks</p>
+        
+        <p><strong>High School Diploma (General Baccalaureate)</strong> (2021-2024)<br>
+        International High School Ferney-Voltaire<br>
+        Honors (Mention Bien)</p>
+    </div>
+</div>
 
             <div>
                 <h3 lang="fr">Mes intérêts</h3>
@@ -991,12 +1031,6 @@
 
         langBtn.addEventListener('click', () => {
             body.classList.toggle('lang-en');
-            // Change le texte du bouton selon la langue active
-            if (body.classList.contains('lang-en')) {
-                langBtn.textContent = 'FR';
-            } else {
-                langBtn.textContent = 'EN';
-            }
         });
 
         // --- Effet de la barre de navigation au scroll ---
