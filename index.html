@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
+<html lang="fr"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio professionnel d'Antoine Desperrier">
+    <meta name="description" lang="fr" content="Portfolio professionnel d'Antoine Desperrier">
+    <meta name="description" lang="en" content="Antoine Desperrier's Professional Portfolio">
+    
     <title>Antoine Desperrier - Portfolio</title>
     <link rel="icon" type="image/x-icon" href="/images/profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -28,7 +30,7 @@
             min-height: 100vh;
         }
 
-        /* bar de nav */
+        /* --- Custom Scrollbar / Barre de navigation --- */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -46,7 +48,7 @@
             background: #0891b2;
         }
 
-        /* navigation */
+        /* --- Navigation --- */
         nav {
             position: fixed;
             top: 0;
@@ -110,12 +112,20 @@
             box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
         }
 
+        /* Multi-language management / Gestion des langues */
+        [lang="en"] { display: none; } /* Par défaut, on cache l'anglais */
+        
+        /* Quand la classe 'lang-en' est sur le body, on inverse */
+        body.lang-en [lang="en"] { display: inline-block; }
+        body.lang-en [lang="fr"] { display: none; }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
         }
 
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -159,7 +169,7 @@
             animation: fadeIn 0.6s ease-out;
         }
 
-        .badge::before {
+	.badge::before {
             content: '';
             width: 8px;
             height: 8px;
@@ -168,11 +178,29 @@
             animation: pulse 2s infinite;
         }
 
+        /* --- Animations --- */
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
 
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Typography / Typographie --- */
         h1 {
             font-size: clamp(2.5rem, 8vw, 4rem);
             font-weight: 700;
@@ -194,6 +222,7 @@
             line-height: 1.6;
         }
 
+        /* --- Buttons / Boutons --- */
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -233,6 +262,7 @@
             background: rgba(6, 182, 212, 0.1);
         }
 
+        /* --- Social Links / Réseaux Sociaux --- */
         .social-links {
             display: flex;
             gap: 1.5rem;
@@ -261,23 +291,7 @@
             color: #06b6d4;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* différentes sections */
+        /* --- Section Layout / Mise en page des sections --- */
         section {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -310,7 +324,7 @@
             border-radius: 2px;
         }
 
-        /* section a proposde moi */
+	/* --- About Section / Section À propos --- */
         .about-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -382,7 +396,7 @@
             margin-left: auto;
         }
 
-        /* compétences */
+        /* --- Skills Section / Section Compétences --- */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -426,7 +440,7 @@
             color: #06b6d4;
         }
 
-        /* experience et les projets */
+        /* --- Experience & Projects / Expérience et Projets --- */
         .card {
             background: rgba(30, 41, 59, 0.5);
             border: 1px solid rgba(6, 182, 212, 0.2);
@@ -460,7 +474,7 @@
             font-weight: 600;
         }
 
-        .period {
+	.period {
             background: rgba(6, 182, 212, 0.1);
             color: #cbd5e1;
             padding: 0.25rem 0.75rem;
@@ -489,7 +503,7 @@
             border: 1px solid rgba(6, 182, 212, 0.3);
         }
 
-        /* section de contact */
+        /* --- Contact Section / Section de contact --- */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -541,7 +555,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* footer bas de page */
+        /* --- Footer / Bas de page --- */
         footer {
             border-top: 1px solid rgba(6, 182, 212, 0.1);
             padding: 2rem;
@@ -550,7 +564,7 @@
             font-size: 0.9rem;
         }
 
-        /* design responsive pour l'ux */
+        /* --- Responsive Design / Design adaptatif --- */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -575,45 +589,82 @@
             .btn {
                 width: 100%;
             }
+	   /* --- Language Switcher Logic --- */
+        [lang="en"] { display: none; }
+        
+        body.lang-en [lang="en"] { display: block; }
+        body.lang-en span[lang="en"], 
+        body.lang-en a[lang="en"], 
+        body.lang-en strong[lang="en"] { display: inline; }
+        
+        body.lang-en [lang="fr"] { display: none; }
+
+        .lang-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            color: #06b6d4;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-left: 1rem;
+        }
+
+        .lang-btn:hover {
+            background: #06b6d4;
+            color: white;
+        }
         }
     </style>
 </head>
 <body>
-    <!-- nav -->
     <nav id="navbar">
         <div class="nav-container">
             <div class="logo">AD</div>
             <div class="nav-links">
-                <a href="#about">À propos</a>
-                <a href="#skills">Compétences</a>
-                <a href="#experience">Expériences</a>
-                <a href="#projects">Projets</a>
-                <a href="#contact" class="cta">Contact</a>
+                <a href="#about"><span lang="fr">À propos</span><span lang="en">About</span></a>
+                <a href="#skills"><span lang="fr">Compétences</span><span lang="en">Skills</span></a>
+                <a href="#experience"><span lang="fr">Expériences</span><span lang="en">Experience</span></a>
+                <a href="#projects"><span lang="fr">Projets</span><span lang="en">Projects</span></a>
+                <a href="#contact" class="cta"><span lang="fr">Contact</span><span lang="en">Contact</span></a>
+                <button id="lang-toggle" class="lang-btn">EN</button>
             </div>
         </div>
     </nav>
 
-    <!-- section de moi -->
     <section class="hero">
         <div class="hero-content">
             <div class="badge">
-                Étudiant en Informatique
+                <span lang="fr">Étudiant en Informatique</span>
+                <span lang="en">Computer Science Student</span>
             </div>
             <h1>Antoine <span class="gradient-text">Desperrier</span></h1>
-            <p>
-Dans le cadre de ma <strong>3e, 4e et 5e année de scolarité</strong> au sein de mon école d'informatique ESTIAM Genève, je recherche un contrat d’alternance.  
-Il s’agit d’une étape <strong>primordiale</strong> dans ma formation, qui débutera dès l’année 2026.  
-Je suis à disposition pour mettre à profit mon <strong>expérience, mes connaissances et ma volonté</strong> de progresser.  
-<strong>Tout contact ou opportunité</strong>pouvant me permettre d’accéder à cette démarche serait grandement apprécié.
-</p>
-            
-            <div style="text-align: center; margin-top: -1rem; margin-bottom: 3rem;">
-                <a href="CV_AD-CH.pdf" class="btn btn-primary">Télécharger mon CV</a>
+            <p lang="fr">
+                Dans le cadre de ma <strong>3e, 4e et 5e année de scolarité</strong> au sein de mon école d'informatique ESTIAM Genève, je recherche un contrat d’alternance.  
+                Il s’agit d’une étape <strong>primordiale</strong> dans ma formation, qui débutera dès l’année 2026.  
+                Je suis à disposition pour mettre à profit mon <strong>expérience, mes connaissances et ma volonté</strong> de progresser.  
+                <strong>Tout contact ou opportunité</strong> pouvant me permettre d’accéder à cette démarche serait grandement apprécié.
+            </p>
+            <p lang="en">
+                As part of my <strong>3rd, 4th, and 5th years</strong> at ESTIAM Geneva, my computer science school, I am seeking an apprenticeship. 
+                This is a <strong>pivotal</strong> step in my training, starting in 2026. 
+                I am ready to contribute my <strong>experience, knowledge, and drive</strong> to grow. 
+                <strong>Any contact or opportunity</strong> that could help me move forward in this process would be greatly appreciated.
+            </p>
+		<div style="text-align: center; margin-top: -1rem; margin-bottom: 3rem;">
+                <a href="CV_AD-CH.pdf" class="btn btn-primary" lang="fr">Télécharger mon CV</a>
+                <a href="CV_AD-CH(EN).pdf" class="btn btn-primary" lang="en">Download my CV</a>
             </div>
 
             <div class="cta-buttons">
-                <a href="#about" class="btn btn-primary">Commençons →</a>
-                <a href="#projects" class="btn btn-secondary">Voir mes projets</a>
+                <a href="#about" class="btn btn-primary">
+                    <span lang="fr">Commençons →</span><span lang="en">Let's start →</span>
+                </a>
+                <a href="#projects" class="btn btn-secondary">
+                    <span lang="fr">Voir mes projets</span><span lang="en">View my projects</span>
+                </a>
             </div>
 
             <div class="social-links">
@@ -640,62 +691,77 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
         </div>
     </section>
 
-    <!-- a propos de moi -->
     <section id="about">
         <div class="section-title">
-            <h2>À propos de moi</h2>
+            <h2 lang="fr">À propos de moi</h2>
+            <h2 lang="en">About me</h2>
         </div>
 
         <div class="about-grid">
             <div class="stat-card">
                 <div class="stat-number">10</div>
-                <p>Ans de passion pour l'informatique</p>
+                <p lang="fr">Ans de passion pour l'informatique</p>
+                <p lang="en">Years of passion for IT</p>
             </div>
             <div class="stat-card">
                 <div class="stat-number">5+</div>
-                <p>Années d'études en informatique</p>
+                <p lang="fr">Années d'études en informatique</p>
+                <p lang="en">Years of Computer Science studies</p>
             </div>
             <div class="stat-card">
                 <div class="stat-number">🏆</div>
-                <p>Prix Hackathon 2025</p>
+                <p lang="fr">Prix Hackathon 2025</p>
+                <p lang="en">2025 Hackathon Award</p>
             </div>
         </div>
 
         <div class="about-content">
             <div class="about-text">
-                <h3>Qui suis-je ?</h3>
-                <p>Je suis Antoine Desperrier, étudiant en Master Informatique chez Estiam (Campus Genève), spécialisé en cybersécurité, cloud, systèmes et réseaux. Passionné par la technologie depuis mon plus jeune âge, j'aime concrétiser des idées techniques et me former en continu.</p>
-                <p>Rigoureux, curieux et motivé, je cherche à acquérir de l'expérience dans des environnements stimulants où je peux contribuer à des projets significatifs et apprendre de nouvelles technologies.</p>
+                <h3 lang="fr">Qui suis-je ?</h3>
+                <h3 lang="en">Who am I?</h3>
                 
-                <h3 style="margin-top: 2rem;">Formation</h3>
-                <p><strong>Master Informatique - 2ème année</strong> (2024-2025)<br>Estiam, Campus Genève<br>Spécialisation : Cybersécurité, Cloud, Système & Réseaux</p>
-                <p><strong>Baccalauréat Général</strong> (2021-2024)<br>Lycée International Ferney-Voltaire<br>Mention bien</p>
+                <p lang="fr">Je suis Antoine Desperrier, étudiant en Master Informatique chez Estiam (Campus Genève), spécialisé en cybersécurité, cloud, systèmes et réseaux. Passionné par la technologie depuis mon plus jeune âge, j'aime concrétiser des idées techniques et me former en continu.</p>
+                <p lang="en">I am Antoine Desperrier, a Master's student in Computer Science at Estiam (Geneva Campus), specializing in cybersecurity, cloud, systems, and networks. Passionate about technology since childhood, I enjoy bringing technical ideas to life and continuously learning.</p>
+                
+                <p lang="fr">Rigoureux, curieux et motivé, je cherche à acquérir de l'expérience dans des environnements stimulants où je peux contribuer à des projets significatifs et apprendre de nouvelles technologies.</p>
+                <p lang="en">Rigorous, curious, and driven, I am looking to gain experience in stimulating environments where I can contribute to meaningful projects and master new technologies.</p>
+                
+                <h3 style="margin-top: 2rem;" lang="fr">Formation</h3>
+                <h3 style="margin-top: 2rem;" lang="en">Education</h3>
+                
+                <p lang="fr"><strong>Master Informatique - 2ème année</strong> (2024-2025)<br>Estiam, Campus Genève<br>Spécialisation : Cybersécurité, Cloud, Système & Réseaux</p>
+                <p lang="en"><strong>Master's in Computer Science - 2nd Year</strong> (2024-2025)<br>Estiam, Geneva Campus<br>Specialization: Cybersecurity, Cloud, Systems & Networks</p>
+                
+                <p lang="fr"><strong>Baccalauréat Général</strong> (2021-2024)<br>Lycée International Ferney-Voltaire<br>Mention bien</p>
+                <p lang="en"><strong>High School Diploma (General Baccalaureate)</strong> (2021-2024)<br>International High School Ferney-Voltaire<br>Honors</p>
             </div>
 
             <div>
-                <h3>Mes intérêts</h3>
+                <h3 lang="fr">Mes intérêts</h3>
+                <h3 lang="en">My Interests</h3>
                 <ul class="interests-list">
-                    <li>Plongée sous-marine (Advanced Open Water)</li>
-                    <li>Sport automobile</li>
-                    <li>Ski</li>
+                    <li><span lang="fr">Plongée sous-marine (Advanced Open Water)</span><span lang="en">Scuba Diving (Advanced Open Water)</span></li>
+                    <li><span lang="fr">Sport automobile</span><span lang="en">Motorsport</span></li>
+                    <li><span lang="fr">Ski</span><span lang="en">Skiing</span></li>
                 </ul>
 
-                <h3 style="margin-top: 2rem;">Langues</h3>
+                <h3 style="margin-top: 2rem;" lang="fr">Langues</h3>
+                <h3 style="margin-top: 2rem;" lang="en">Languages</h3>
                 <ul class="languages-list">
                     <li>
-                        <span>Français</span>
-                        <span class="language-level">Natif</span>
+                        <span>Français / French</span>
+                        <span class="language-level" lang="fr">Natif</span><span class="language-level" lang="en">Native</span>
                     </li>
                     <li>
-                        <span>Anglais</span>
+                        <span>Anglais / English</span>
                         <span class="language-level">B2</span>
                     </li>
                     <li>
-                        <span>Portugais</span>
+                        <span>Portugais / Portuguese</span>
                         <span class="language-level">A2</span>
                     </li>
                     <li>
-                        <span>Allemand</span>
+                        <span>Allemand / German</span>
                         <span class="language-level">A2</span>
                     </li>
                 </ul>
@@ -703,15 +769,16 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
         </div>
     </section>
 
-    <!-- mes compétences -->
     <section id="skills">
         <div class="section-title">
-            <h2>Compétences</h2>
+            <h2 lang="fr">Compétences</h2>
+            <h2 lang="en">Skills</h2>
         </div>
 
         <div class="skills-grid">
             <div class="skill-card">
-                <h3>Infrastructure & Cloud</h3>
+                <h3 lang="fr">Infrastructure & Cloud</h3>
+                <h3 lang="en">Infrastructure & Cloud</h3>
                 <ul>
                     <li>Infrastructure-as-Code</li>
                     <li>Fortigate</li>
@@ -725,7 +792,8 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
             </div>
 
             <div class="skill-card">
-                <h3>Systèmes & Réseaux</h3>
+                <h3 lang="fr">Systèmes & Réseaux</h3>
+                <h3 lang="en">Systems & Networks</h3>
                 <ul>
                     <li>Linux (Client/Server)</li>
                     <li>Windows (Client/Server)</li>
@@ -734,7 +802,8 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
             </div>
 
             <div class="skill-card">
-                <h3>Langages de programmation</h3>
+                <h3 lang="fr">Langages de programmation</h3>
+                <h3 lang="en">Programming Languages</h3>
                 <ul>
                     <li>Python</li>
                     <li>C / C++ / C#</li>
@@ -747,76 +816,90 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
         </div>
     </section>
 
-    <!-- mes experiences -->
     <section id="experience">
         <div class="section-title">
-            <h2>Expériences</h2>
+            <h2 lang="fr">Expériences</h2>
+            <h2 lang="en">Experience</h2>
         </div>
 
-        <div class="card">
+<div class="card">
             <div class="card-meta">
                 <div>
-                    <h3>Interventions techniques en entreprise</h3>
+                    <h3 lang="fr">Interventions techniques en entreprise</h3>
+                    <h3 lang="en">Technical Business Interventions</h3>
                     <p class="company">Satom IT & Learning Solutions</p>
                 </div>
                 <span class="period">2024 - 2025</span>
             </div>
-            <p>Prestations informatiques gratuites pour des PME, associations ou collectivités. Installation et configuration de VPN, diagnostic réseau, solutions de sécurité, installation de caméras IP.</p>
+            <p lang="fr">Prestations informatiques gratuites pour des PME, associations ou collectivités. Installation et configuration de VPN, diagnostic réseau, solutions de sécurité, installation de caméras IP.</p>
+            <p lang="en">Free IT services for SMEs, associations, or local authorities. Installation and configuration of VPNs, network diagnostics, security solutions, and IP camera installation.</p>
             <div class="tags">
                 <span class="tag">VPN</span>
                 <span class="tag">Networking</span>
-                <span class="tag">Sécurité</span>
-                <span class="tag">Support technique</span>
+                <span class="tag" lang="fr">Sécurité</span><span class="tag" lang="en">Security</span>
+                <span class="tag" lang="fr">Support technique</span><span class="tag" lang="en">Technical Support</span>
             </div>
         </div>
 
         <div class="card">
             <div class="card-meta">
                 <div>
-                    <h3>Technicien Informatique</h3>
+                    <h3 lang="fr">Technicien Informatique</h3>
+                    <h3 lang="en">IT Technician</h3>
                     <p class="company">GameGoat</p>
                 </div>
-                <span class="period">Mars - Avril 2025</span>
+                <span class="period">
+                    <span lang="fr">Mars - Avril 2025</span><span lang="en">March - April 2025</span>
+                </span>
             </div>
-            <p>Montage et réparation de tous types d'ordinateurs. Développement de site web avec des outils no-code. Gestion d'événementiel (espace jeux). Stage d'un mois en entreprise.</p>
+            <p lang="fr">Montage et réparation de tous types d'ordinateurs. Développement de site web avec des outils no-code. Gestion d'événementiel (espace jeux). Stage d'un mois en entreprise.</p>
+            <p lang="en">Assembly and repair of all types of computers. Website development using no-code tools. Event management (gaming area). One-month corporate internship.</p>
             <div class="tags">
                 <span class="tag">Hardware</span>
                 <span class="tag">Web Development</span>
                 <span class="tag">No-code</span>
-                <span class="tag">Événementiel</span>
+                <span class="tag" lang="fr">Événementiel</span><span class="tag" lang="en">Events</span>
             </div>
         </div>
 
         <div class="card">
             <div class="card-meta">
                 <div>
-                    <h3>Pose de cuisines</h3>
+                    <h3 lang="fr">Pose de cuisines</h3>
+                    <h3 lang="en">Kitchen Fitting</h3>
                     <p class="company">SEB Multiservices Sàrl</p>
                 </div>
-                <span class="period">Juillet 2024</span>
+                <span class="period">
+                    <span lang="fr">Juillet 2024</span><span lang="en">July 2024</span>
+                </span>
             </div>
-            <p>Assemblage et installation de meubles de cuisine selon plans techniques. Utilisation du matériel pour des découpes, ajustements et finitions. Travail en autonomie ou en binôme.</p>
+            <p lang="fr">Assemblage et installation de meubles de cuisine selon plans techniques. Utilisation du matériel pour des découpes, ajustements et finitions. Travail en autonomie ou en binôme.</p>
+            <p lang="en">Assembly and installation of kitchen units according to technical plans. Use of specialized tools for cutting, adjustments, and finishing. Working independently or in pairs.</p>
             <div class="tags">
-                <span class="tag">Rigueur</span>
-                <span class="tag">Travail en équipe</span>
-                <span class="tag">Autonomie</span>
+                <span class="tag" lang="fr">Rigueur</span><span class="tag" lang="en">Precision</span>
+                <span class="tag" lang="fr">Travail en équipe</span><span class="tag" lang="en">Teamwork</span>
+                <span class="tag" lang="fr">Autonomie</span><span class="tag" lang="en">Autonomy</span>
             </div>
         </div>
     </section>
 
-    <!-- mes projets -->
     <section id="projects">
         <div class="section-title">
-            <h2>Projets</h2>
+            <h2 lang="fr">Projets</h2>
+            <h2 lang="en">Projects</h2>
         </div>
 
         <div class="card">
             <div class="card-meta">
-                <h3>Réseau d'entreprise avec Infrastructure-as-Code 🏆</h3>
+                <h3 lang="fr">Réseau d'entreprise avec Infrastructure-as-Code 🏆</h3>
+                <h3 lang="en">Enterprise Network with Infrastructure-as-Code 🏆</h3>
             </div>
-            <p>Mise en place d'un réseau d'entreprise complet en utilisant des principes d'Infrastructure-as-Code. Projet lauréat du Hackathon 2025 (équipe réseau).</p>
-            <p><strong>Rôle:</strong> Lead Infrastructure</p>
-            <p><strong>Achievement:</strong> 🏆 Prix Hackathon 2025 - Équipe réseau</p>
+            <p lang="fr">Mise en place d'un réseau d'entreprise complet en utilisant des principes d'Infrastructure-as-Code. Projet lauréat du Hackathon 2025 (équipe réseau).</p>
+            <p lang="en">Implementation of a complete corporate network using Infrastructure-as-Code principles. Winning project of the 2025 Hackathon (network team).</p>
+            
+            <p><strong><span lang="fr">Rôle :</span><span lang="en">Role:</span></strong> Lead Infrastructure</p>
+            <p><strong><span lang="fr">Succès :</span><span lang="en">Achievement:</span></strong> 🏆 <span lang="fr">Prix Hackathon 2025 - Équipe réseau</span><span lang="en">2025 Hackathon Award - Network Team</span></p>
+            
             <div class="tags">
                 <span class="tag">Infrastructure-as-Code</span>
                 <span class="tag">Networking</span>
@@ -826,10 +909,13 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
 
         <div class="card">
             <div class="card-meta">
-                <h3>Serveur Debian personnel (Homelab)</h3>
+                <h3 lang="fr">Serveur Debian personnel (Homelab)</h3>
+                <h3 lang="en">Personal Debian Server (Homelab)</h3>
             </div>
-            <p>Configuration d'un serveur sous Debian avec accès distant sécurisé. Apprentissage de l'administration réseau et système dans un environnement contrôlé.</p>
-            <p><strong>Rôle:</strong> Administrateur système</p>
+            <p lang="fr">Configuration d'un serveur sous Debian avec accès distant sécurisé. Apprentissage de l'administration réseau et système dans un environnement contrôlé.</p>
+            <p lang="en">Configuration of a Debian server with secure remote access. Learning network and system administration within a controlled environment.</p>
+            
+            <p><strong><span lang="fr">Rôle :</span><span lang="en">Role:</span></strong> <span lang="fr">Administrateur système</span><span lang="en">System Administrator</span></p>
             <div class="tags">
                 <span class="tag">Debian</span>
                 <span class="tag">OpenVPN</span>
@@ -840,10 +926,13 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
 
         <div class="card">
             <div class="card-meta">
-                <h3>Site Personnel Responsive</h3>
+                <h3 lang="fr">Site Personnel Responsive</h3>
+                <h3 lang="en">Responsive Personal Site</h3>
             </div>
-            <p>Développement d'un site web responsive avec Tailwind CSS et intégration manuelle HTML5/CSS3. Hébergé sur GitHub Pages.</p>
-            <p><strong>Rôle:</strong> Développeur Full-Stack</p>
+            <p lang="fr">Développement d'un site web responsive avec Tailwind CSS et intégration manuelle HTML5/CSS3. Hébergé sur GitHub Pages.</p>
+            <p lang="en">Development of a responsive website with Tailwind CSS and manual HTML5/CSS3 integration. Hosted on GitHub Pages.</p>
+            
+            <p><strong><span lang="fr">Rôle :</span><span lang="en">Role:</span></strong> <span lang="fr">Développeur Full-Stack</span><span lang="en">Full-Stack Developer</span></p>
             <div class="tags">
                 <span class="tag">HTML5</span>
                 <span class="tag">CSS3</span>
@@ -853,14 +942,15 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
         </div>
     </section>
 
-    <!-- me contacter -->
     <section id="contact">
         <div class="section-title">
-            <h2>Travaillons ensemble</h2>
+            <h2 lang="fr">Travaillons ensemble</h2>
+            <h2 lang="en">Let's Work Together</h2>
         </div>
 
         <p style="text-align: center; margin-bottom: 3rem; color: #cbd5e1;">
-            Vous avez un projet intéressant ou vous souhaitez discuter d'une opportunité ? N'hésitez pas à me contacter.
+            <span lang="fr">Vous avez un projet intéressant ou vous souhaitez discuter d'une opportunité ? N'hésitez pas à me contacter.</span>
+            <span lang="en">Do you have an interesting project or want to discuss an opportunity? Feel free to reach out.</span>
         </p>
 
         <div class="contact-grid">
@@ -882,20 +972,34 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
         </div>
 
         <div class="info-box">
-            <p>📍 Genève, Suisse | 📞 +33 6 18 51 26 58</p>
-            <p>Disponible pour des stages, des projets freelance ou des opportunités d'emploi.</p>
+            <p>📍 <span lang="fr">Genève, Suisse</span><span lang="en">Geneva, Switzerland</span> | 📞 +33 6 18 51 26 58</p>
+            <p lang="fr">Disponible pour des stages, des projets freelance ou des opportunités d'emploi.</p>
+            <p lang="en">Available for internships, freelance projects, or job opportunities.</p>
         </div>
     </section>
 
-
-    <!-- footer -->
     <footer>
-        <p>© 2025 Antoine Desperrier. Tous droits réservés.</p>
-        <p>Construit avec HTML, CSS et passion pour la technologie.</p>
+        <p>© 2025 Antoine Desperrier. <span lang="fr">Tous droits réservés.</span><span lang="en">All rights reserved.</span></p>
+        <p lang="fr">Construit avec HTML, CSS et passion pour la technologie.</p>
+        <p lang="en">Built with HTML, CSS, and a passion for technology.</p>
     </footer>
 
-    <script>
-        // Effet de la bar nav et pour une navigation en douceur
+<script>
+        // --- Gestion du changement de langue ---
+        const langBtn = document.getElementById('lang-toggle');
+        const body = document.body;
+
+        langBtn.addEventListener('click', () => {
+            body.classList.toggle('lang-en');
+            // Change le texte du bouton selon la langue active
+            if (body.classList.contains('lang-en')) {
+                langBtn.textContent = 'FR';
+            } else {
+                langBtn.textContent = 'EN';
+            }
+        });
+
+        // --- Effet de la barre de navigation au scroll ---
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -905,7 +1009,7 @@ Je suis à disposition pour mettre à profit mon <strong>expérience, mes connai
             }
         });
 
-        // navigation sur le site en douceur
+        // --- Navigation fluide (Smooth Scroll) ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
